@@ -15,5 +15,5 @@ public class Loan {
     private LocalDate loanDate;
     private LocalDate returnDate;
 
-    // Getters, setters, constructeurs, etc.
+    // Getters, setters, constructeurs, ekkkktc.
 }
