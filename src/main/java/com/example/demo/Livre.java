@@ -26,7 +26,7 @@ public class Livre {
      */
     public Livre(String titre, String auteur, int anneePublication, String isbn) {
         if (anneePublication < 0) {
-            throw new IllegalArgumentException("L'annee de publication ne peut pas être négative");
+            throw new IllegalArgumentException("L'anne de publication ne peut pas être négative");
         }
         this.titre = titre;
         this.auteur = auteur;
