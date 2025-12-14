@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Build & Test') {
             steps {
-                echo 'Build en cours'
+                sh 'mvn clean package'
             }
         }
     }
@@ -12,17 +12,30 @@ pipeline {
     post {
         success {
             emailext (
-                subject: "BUILD SUCCESS : ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: "Le build a réussi.\n\nLien : ${env.BUILD_URL}",
-                to: "asmaeelyakoubi73@gmail.com"
+                    subject: "✅ SUCCESS : ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                    body: """
+Le build Jenkins a réussi.
+
+Projet : ${env.JOB_NAME}
+Build  : ${env.BUILD_NUMBER}
+Commit : ${env.GIT_COMMIT}
+URL    : ${env.BUILD_URL}
+""",
+                    to: "TON_EMAIL@gmail.com"
             )
         }
 
         failure {
             emailext (
-                subject: "BUILD FAILED : ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: "Le build a échoué.\n\nLien : ${env.BUILD_URL}",
-                to: "tonemail@gmail.com"
+                    subject: "❌ FAILURE : ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                    body: """
+Le build Jenkins a échoué.
+
+Projet : ${env.JOB_NAME}
+Build  : ${env.BUILD_NUMBER}
+URL    : ${env.BUILD_URL}
+""",
+                    to: "asmaeelyakoubi73@gmail.com"
             )
         }
     }
