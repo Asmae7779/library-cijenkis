@@ -15,5 +15,5 @@ public class Loan {
     private LocalDate loanDate;
     private LocalDate returnDate;
 
-    // Getters, setters, constructeurs, ekkkktc.www
+    // Getters, setters, constructeurs,
 }
